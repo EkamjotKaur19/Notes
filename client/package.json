@@ -1,7 +1,6 @@
 {
   "name": "notes-app",
   "version": "0.1.0",
-  "homepage": "https://EkamjotKaur19.github.io/React-Projects",
   "private": true,
   "dependencies": {
     "@react-oauth/google": "^0.9.0",
