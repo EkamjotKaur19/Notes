@@ -5,16 +5,19 @@ import Download from './Download'
 import noteService from '../services/notes'
 import copy from "copy-to-clipboard";  
 
-export default function Note({ onDelete, id, setNote, setNotes, notes, editNote, note, color, file, pin, showpin, icons}) {
+export default function Note({ onDelete, id, setNote, setNotes, notes, editNote, note, color, file, pin, showpin, icons, date}) {
   const [isOpen, setIsOpen] = useState(false);
   const [displayForm, setForm] = useState(false);
   const [downPop, setDownPop]=useState(false)
-  const [copyText, setCopyText] = useState('');
-  
+  const [dates, setDates] = useState(date);
     
     const copyToClipboard = () => {
        copy(note.content);
        alert(`You have copied "${note.content}"`);
+    }
+
+    const dateFunc = () => {
+      setDates(new Date().getDay())
     }
   
 
@@ -88,6 +91,10 @@ export default function Note({ onDelete, id, setNote, setNotes, notes, editNote,
         <button className={icons? 'note-button show' : 'hide'} onClick={copyToClipboard}>
           Copy 
         </button>
+      </div>
+
+      <div className="time">
+        <p onClick={() => dateFunc()} >Date: {dates.substring(0,10)}</p>
       </div>
     </div>
 

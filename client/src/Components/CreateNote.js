@@ -21,6 +21,7 @@ export default function CreateNote({dark, reg}) {
   const [searchTerm, setSearchTerm]=useState('');
   const [file, setFile] = useState('');
   const [pin, setPin] = useState(false);
+  const [date, setDate] = useState("");
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
   const [logged, setLogged] = useState(false);
@@ -33,7 +34,8 @@ export default function CreateNote({dark, reg}) {
     colors:'white',
     searched:false,
     file:"",
-    pin:false
+    pin:false,
+    date:""
   });
 
 
@@ -108,6 +110,7 @@ export default function CreateNote({dark, reg}) {
       })}
       } catch (exception) {
         alert('Wrong credentials')
+        setLogged(!logged);
         setTimeout(() => {
         }, 5000)
       }
@@ -121,6 +124,7 @@ export default function CreateNote({dark, reg}) {
     note.colors=color
     note.file=file
     note.pin=pin
+    note.date=date.toLocaleDateString()
     setColor('white');
     noteService.create(newNote).then(response => setNotes((prevValue) => {
       if(prevValue){
@@ -137,6 +141,7 @@ export default function CreateNote({dark, reg}) {
     note.title = title;
     note.content = content;  
     note.pin=pin;  
+    note.date=date.toLocaleDateString();
     noteService.update(note.id, note).then(response => {
       setNotes([...notes]);
     })
@@ -198,14 +203,19 @@ export default function CreateNote({dark, reg}) {
   const  submitButton = (event) => {
     console.log('ok')
     addNote(note);
+    setDate(
+      note.date = new Date().toLocaleDateString()
+    )
     setNote({
       title: "",
       content: "",
       file:note.file,
-      pin:note.pin
+      pin:note.pin,
+      date:new Date().toLocaleDateString()
     });
     setFile('');
     setPin(false);
+    console.log(note.date);
     event.preventDefault();
   }
 
@@ -253,22 +263,16 @@ export default function CreateNote({dark, reg}) {
           </MDBCol>
   
           <MDBCol col='6' md='5'>
-          <p className="text-center h2 fw-bold mx-1 mx-md-3 mt-2 mb-2">Sign In</p>
+          <p className="text-center h2 fw-bold mx-1 mx-md-3 mt-1 mb-2">Sign In</p>
   
   
-            <MDBInput wrapperClass='mb-1' label='Username' id='formControlLg' type='text' size="lg" value={username} onChange={({ target }) => setUsername(target.value)}/>
-            <MDBInput wrapperClass='mb-1' label='Password' id='formControlLg' type='password' size="lg" value={password} onChange={({ target }) => setPassword(target.value)}/>
-  
-  
-            {/* <div className="d-flex justify-content-between mx-3 mb-2">
-              <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-              <a href="!#">Forgot password?</a>
-            </div>*/}
-  
-            <button className="mb-2 w-100 log-btn" size="lg">Sign in</button>
+            <MDBInput className='mb-0' wrapperClass='mb-0' label='Username' id='formControlLg' type='text' size="lg" value={username} onChange={({ target }) => setUsername(target.value)}/>
+            
+            <MDBInput className='mb-0' wrapperClass='mb-0' label='Password' id='formControlLg' type='password' size="lg" value={password} onChange={({ target }) => setPassword(target.value)}/>
+            <button className="mt-2 mb-2 w-100 log-btn" size="lg">Sign in</button>
   
             <Link to='/signup' >
-            <button className="mb-4 w-100 log-btn" size="lg" >
+            <button className="mb-5 w-100 log-btn" size="lg" >
               New User? Register First
             </button>
             </Link>
@@ -351,6 +355,7 @@ export default function CreateNote({dark, reg}) {
             file={note.file!=='' ? note.file : ' ' }
             pin={note.pin}
             icons='true'
+            date={note.date}
           />
       )) : null}
     </div> }
