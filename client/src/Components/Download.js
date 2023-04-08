@@ -11,7 +11,7 @@ export default function Download({content,title,handleClose, file}) {
             </Pdf>
             <div ref={ref} className='pdf' >
                 <img src={file} className='pdf-img'  alt=''/>
-                <p>{content}</p>
+                <p className='down-cont' >{content}</p>
             </div>
             <button className='pop-close-down' onClick={handleClose}>
                 Close

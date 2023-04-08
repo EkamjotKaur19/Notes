@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import logo from '../images/p4.png'
 import { useNavigate, Link } from 'react-router-dom'
 import registerService from '../services/register'
 import {
@@ -38,6 +38,12 @@ function Signup() {
       }
 
   return (
+    <>
+    <div className="signup-logo">
+      <Link to='/React-Projects' className=''>
+        <img className='logo' src={logo} alt="logo" />
+      </Link> 
+    </div>
     <form onSubmit={handleReg} >
       <MDBContainer fluid  >
         <MDBCardBody className='p-0 signupbox text-black m-1' style={{borderRadius: '25px'}} >
@@ -75,6 +81,7 @@ function Signup() {
         </MDBCardBody>
       </MDBContainer>
     </form>
+    </>
   );
 }
 

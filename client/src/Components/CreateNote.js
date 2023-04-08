@@ -13,6 +13,7 @@ from 'mdb-react-ui-kit';
 import userService from '../services/users'
 import loginService from '../services/login'
 import { useNavigate, Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 export default function CreateNote({dark, reg}) {
   const [notes, setNotes] = useState([]);
@@ -252,6 +253,7 @@ export default function CreateNote({dark, reg}) {
 
   return (
     <>
+      <Navbar dark={dark} handleLogout={handleLogout} logged={logged} />
       {!logged && 
       <form onSubmit={handleLogin} > 
       <MDBContainer fluid className="p-3  my-2">
@@ -263,7 +265,7 @@ export default function CreateNote({dark, reg}) {
           </MDBCol>
   
           <MDBCol col='6' md='5'>
-          <p className="text-center h2 fw-bold mx-1 mx-md-3 mt-1 mb-2">Sign In</p>
+          <p className="text-center h2 fw-bold mx-1 mx-md-3 mt-1 mb-3">Sign In</p>
   
   
             <MDBInput className='mb-0' wrapperClass='mb-0' label='Username' id='formControlLg' type='text' size="lg" value={username} onChange={({ target }) => setUsername(target.value)}/>
@@ -293,11 +295,6 @@ export default function CreateNote({dark, reg}) {
       </div>
 
       
-
-
-      <button onClick={handleLogout} className=" logout-btn" size="lg" >
-        LOGOUT
-      </button>
     <form className='create-form' style={{backgroundColor:color}} >
         { isExpanded && 
         (<input  value={note.title} type='text' placeholder='Take a note' name='title' onChange={handleChange}  style={{backgroundColor:color} } />) }

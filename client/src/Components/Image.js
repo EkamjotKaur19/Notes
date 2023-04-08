@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function App() {
+function Image() {
 	const [file, setFile] = useState();
 	function handleChange(e) {
 		console.log(e.target.files);
@@ -12,10 +12,9 @@ function App() {
 			<h2>Add Image:</h2>
 			<input type="file" onChange={handleChange} />
 			<img src={file} alt=''/>
-
 		</div>
 
 	);
 }
 
-export default App;
+export default Image;
