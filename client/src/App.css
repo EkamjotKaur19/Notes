@@ -60,7 +60,7 @@
 
 .mode{
   position: absolute;
-  top:2%;
+  top:2.5%;
   right:1%
 }
 
@@ -750,6 +750,9 @@ btnss{
 
 
 .toggle{
+  position:fixed;
+  right:1%;
+  top:9%;
   display: none;
 }
 
@@ -775,7 +778,7 @@ btnss{
   border: none;
   color: blue;
   top:0;
-  padding: 0 7px;
+  padding: 0 5px;
   text-decoration: none;
   text-transform: uppercase;
   background-color: #ffffff;
@@ -794,6 +797,19 @@ btnss{
   background-color: #202124;
 }
 
+.mark-dark{
+  background-color: white;
+  color:black;
+}
+
+.nav-btn-dark:hover{
+
+	background-color: #ffffff;
+  color:#000000;
+	transition: all ease 0.2s;
+  border-radius: 10px;
+}
+
 
 
 li  {
@@ -810,18 +826,23 @@ li  {
 
   .nav-mob{
     position: relative;
-    top:5%;
-  }
-
-  .mob{
-    position: relative;
-    top:4%;
-    margin:10px;
+    top:6%;
   }
 
   .resp{
+    border: none;
+    outline: none;
+    background-color: #fffefe;
     position: relative;
-    right:4%;
+    top:5%;
+  }
+
+  .resp-dark{
+    border: none;
+    outline: none;
+    background-color: #fffefe;
+    position: relative;
+    top:5%;
   }
 
   @media screen and (min-width: 280px) and (max-width: 1080px) {

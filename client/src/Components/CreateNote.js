@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Note from './Note';
+import logo from '../images/p4.png'
 import noteService from '../services/notes'
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -125,7 +126,7 @@ export default function CreateNote({dark, reg}) {
     note.colors=color
     note.file=file
     note.pin=pin
-    note.date=date.toLocaleDateString()
+    note.date=new Date().toLocaleDateString() + ''
     setColor('white');
     noteService.create(newNote).then(response => setNotes((prevValue) => {
       if(prevValue){
@@ -142,7 +143,7 @@ export default function CreateNote({dark, reg}) {
     note.title = title;
     note.content = content;  
     note.pin=pin;  
-    note.date=date.toLocaleDateString();
+    note.date=date;
     noteService.update(note.id, note).then(response => {
       setNotes([...notes]);
     })
@@ -205,14 +206,14 @@ export default function CreateNote({dark, reg}) {
     console.log('ok')
     addNote(note);
     setDate(
-      note.date = new Date().toLocaleDateString()
+      note.date = new Date().toLocaleDateString() + ''
     )
     setNote({
       title: "",
       content: "",
       file:note.file,
       pin:note.pin,
-      date:new Date().toLocaleDateString()
+      date:new Date().toLocaleDateString() + ''
     });
     setFile('');
     setPin(false);
@@ -246,15 +247,21 @@ export default function CreateNote({dark, reg}) {
 
   const handleLogout = () =>{
     window.localStorage.removeItem('loggedNoteappUser')
-    setLogged(!logged);
     navigate('/React-Projects')
+    setLogged(!logged)
     setNotes(null);
   }
 
   return (
     <>
-      <Navbar dark={dark} handleLogout={handleLogout} logged={logged} />
+      
       {!logged && 
+      <>
+      <div className="signup-logo">
+      <Link to='/React-Projects' className=''>
+        <img className='logo' src={logo} alt="logo" />
+      </Link> 
+    </div>
       <form onSubmit={handleLogin} > 
       <MDBContainer fluid className="p-3  my-2">
   
@@ -284,10 +291,13 @@ export default function CreateNote({dark, reg}) {
   
       </MDBContainer>
       </form>
+      </>
        }
     
     
-    {logged &&   <div className={dark?"dark":"white"}>
+    {logged &&  
+     <div className={dark?"dark":"white"}>
+      <Navbar dark={dark} handleLogout={handleLogout} logged={logged} />
       <div className="search-box">
         <button className={!dark?"search-btn": 'search-btn dark'} onClick={(id)=>{searchNote(id)}} ><i className="fa-solid fa-magnifying-glass"></i></button>
         <input className={!dark?'search-bar':'search-bar-dark'} type='text' onChange={(event) => setSearchTerm(event.target.value)} />

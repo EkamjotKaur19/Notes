@@ -10,16 +10,7 @@ import Footer from './Components/Footer';
 function App() {
   
   const[dark, setDark]=useState(false);
-  const [reg, setReg]=useState(false);
   const [logged, setLogged]=useState(false);
-
-  
-
-  const toggleReg = () => {
-    console.log(reg);
-    setReg(!reg);
-    console.log(reg)
-  }
 
   
   

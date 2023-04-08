@@ -22,16 +22,16 @@ function Navbar({dark, handleLogout, logged}) {
         {isNavOpen ? (
             <>
             <div className="nav-mob">
-                <button className={!dark?'nav-btn resp mob' : 'nav-btn-dark resp mob'} onClick={ () => setIsNavOpen(false)} >
-                <i className="fa-regular fa-circle-xmark"></i>
+                <button className={!dark?'nav-btn resp mob' : 'nav-btn-dark resp-dark mob'} onClick={ () => setIsNavOpen(false)} >
+                <i className={!dark? "fa-regular fa-circle-xmark" :"fa-regular fa-circle-xmark mark-dark"} ></i>
                 </button>
                 </div>
                 <ul className={!logged? 'hid' : ''} >
                 <li >
-                    <button className={!dark?'nav-btn mob' : 'mob nav-btn-dark'} onClick={handleReg}>Register</button>
+                    <button className={!dark?'nav-btn' : 'nav-btn-dark'} onClick={handleReg}>Register</button>
                 </li>
                 <li >
-                    <button className={!dark?'nav-btn mob' : 'mob nav-btn-dark'} onClick={handleLogout} >LogOut</button>
+                    <button className={!dark?'nav-btn' : 'nav-btn-dark'} onClick={handleLogout} >LogOut</button>
                 </li>
                 
                 </ul>
@@ -40,7 +40,7 @@ function Navbar({dark, handleLogout, logged}) {
         ) : (
             <>
             
-            <button
+            <button className={!dark?'nav-btn resp mob' : 'nav-btn-dark resp-dark mob'}
             onClick={ (e) => {
                 e.stopPropagation();
                 setIsNavOpen(true);
@@ -69,6 +69,7 @@ const Links = styled.div`
 @media screen and (min-width: 280px) and (max-width: 1080px) {
     position: absolute;
     overflow-x: hidden;
+    list-style:none;
     top: 0;
     right: 0;
     width: ${({ isNavOpen }) => (isNavOpen ? "100%" : "0%")};
