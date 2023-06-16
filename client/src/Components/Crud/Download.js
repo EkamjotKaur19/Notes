@@ -1,5 +1,6 @@
 import React from 'react';
 import Pdf from "react-to-pdf";
+import './style.css'
 const ref = React.createRef();
 
 export default function Download({content,title,handleClose, file}) {

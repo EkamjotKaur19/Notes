@@ -1,4 +1,4 @@
-
+/*
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
@@ -85,7 +85,7 @@
   }
 
 
-/*Search Box*/
+Search Box
 .search-box{
   position: absolute;;
   top:2.7%;
@@ -345,7 +345,7 @@ btnss{
 
 
 
-/*Notes*/
+/*Notes
 
 .note {
   background: #ffffff;
@@ -437,7 +437,7 @@ btnss{
 }
 
 
-/* Popup style */
+/* Popup style 
 .popup-box {
   position: fixed;
   background: #00000050;
@@ -583,7 +583,7 @@ btnss{
   height: 100%;
 }
 
-/*Download*/
+/*Download
 
 .down-cont{
   color: #6f212b;
@@ -648,7 +648,7 @@ btnss{
 }
 
 
-/*Login */
+/*Login 
 
 .sign-box{
   margin-left: 0px;
@@ -732,7 +732,7 @@ btnss{
 }
 
 
-/*footer*/
+/*footer
 .foot{
   position: fixed;
     height: 50px;
@@ -742,7 +742,7 @@ btnss{
   color: #ffffff;
 }
 
-/*Navbar*/
+/*Navbar
 .brand__container{
   margin: 0;
   padding: 0;
@@ -872,5 +872,116 @@ li  {
         justify-content: center;
       }
     }
+
+*/
+
+
+.note {
+  background: #ffffff;
+  width: 270px;
+  border-radius: 7px;
+  height:270px;
+  box-shadow: 0 2px 5px rgb(175, 175, 175);
+  padding: 10px;
+  margin-left: 45px;
+  margin-bottom: 40px;
+  float: left;
+}
+
+.note-btns{
+  position: relative;
+  
+}
+
+
+.note:hover{
+  transform: scale(1.05);
+  opacity:1.3;
+  transition: all 0.5s ease-in-out;
+
+}
+
+.note-pin {
+  background: #ffffff;
+  width: 300px;
+  border-radius: 7px;
+  height:270px;
+  box-shadow: 0 2px 5px rgb(175, 175, 175);
+  padding: 10px;
+  margin: 16px;
+  display: block;
+  margin-right: 0;
+}
+
+.pinned{
+  background-color: #eebb14;
+}
+
+.pin{
+  font-size: 24px;
+}
+
+.high-text{
+  color:#eebb14;
+}
+
+.note-high{
+  background: #eebb14;
+  width: 240px;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px rgb(175, 175, 175);
+  padding: 10px;
+  margin: 16px;
+  float: left;
+  margin-right: 0;
+}
+
+.note h1 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #6f212b;
+}
+
+.note p {
+  font-size: 1rem;
+  color: #6f212b;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note-button {
+  position: relative;
+  float: right;
+  color: #493b5a;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.time{
+  position: fixed;
+  bottom:2px;
+}
+
+.reg-btn{
+  width:40%;
+  border: none;
+    font-size: 20px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: rgb(70, 82, 248);
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.reg-btn:hover{
+  background-color: rgb(40, 18, 238);
+  color:white;
+  transform: scale(1.03);
+}
 
 

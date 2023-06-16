@@ -1,0 +1,44 @@
+.feat-main{
+    padding: 0;
+    min-height:70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+  .row .feat-h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3.75em;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0;
+  }
+
+.feat-wrapper{
+    background: linear-gradient(#279aff 70%, #fff 50%, #fff 100%);
+}
+
+.contain{
+    overflow:hidden;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin:20px;
+}
+
+.contain .boxes{
+    width:280px;
+    height:400px;
+    position:relative;
+    background:#fff;
+    margin: 30px;
+    padding: 40px 40px 60px 30px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.3)
+}

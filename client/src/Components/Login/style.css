@@ -1,0 +1,36 @@
+
+.sign-box{
+    margin-left: 0px;
+  }
+  
+  .log-btn{
+      border: none;
+      font-size: 20px;
+      padding: 10px 10px;
+      border-radius: 10px;
+      background-color: rgb(70, 82, 248);
+      color: white;
+      cursor: pointer;
+      margin-bottom: 10px;
+      margin-top: 10px;
+  }
+  
+  .logout-btn{
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    right:1%;
+    width: 10%;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: rgb(70, 82, 248);
+    color: white;
+    cursor: pointer;
+  }
+  
+  .log-btn:hover{
+    background-color: rgb(40, 18, 238);
+    color:white;
+    transform: scale(1.03);
+  }
+  

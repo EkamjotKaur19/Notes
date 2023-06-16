@@ -1,20 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import Note from './Note';
-import logo from '../images/p4.png'
-import noteService from '../services/notes'
+import React, {useState, useEffect, useContext} from 'react';
+import Note from '../Note'
+import noteService from '../../services/notes'
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBInput,
-}
-from 'mdb-react-ui-kit';
+import userService from '../../services/users'
+import './style.css'
+import Spinner from '../Spinner/Spinner';
+import MyEditor from '../Editor/MyEditor';
 
-import userService from '../services/users'
-import loginService from '../services/login'
-import { useNavigate, Link } from 'react-router-dom';
-import Navbar from './Navbar';
 
 export default function CreateNote({dark, reg}) {
   const [notes, setNotes] = useState([]);
@@ -28,8 +20,6 @@ export default function CreateNote({dark, reg}) {
   const [password, setPassword] = useState('') 
   const [logged, setLogged] = useState(false);
   const [user, setUser] = useState(false)
-  const [cook, setCook]=useState(false);
-  const navigate=useNavigate();
   const [note, setNote] = useState({
     title:"",
     content:"",
@@ -74,49 +64,6 @@ export default function CreateNote({dark, reg}) {
     
   }, [])
 
-  const handleLogin = async (event) => {
-    
-    event.preventDefault()
-    console.log('logging in with', username, password);
-    setLogged(!logged);
-    
-    try {
-          const user = await loginService.login({
-          username, password,
-
-
-        })
-        window.localStorage.setItem(
-          'loggedNoteappUser', JSON.stringify(user)
-        )
-        
-        noteService.setToken(user.token)
-        setUser(user)
-        setUsername('')
-        setPassword('');
-        console.log(user.id)
-        if(cook==false){
-        userService.getOne(user.id).then(noteList => {
-          for(let i=0; i<noteList.length; i++){
-           setNotes((prevValue)=>{
-            if(prevValue){
-              return [...prevValue, noteList[i]];
-            }
-            else{
-              return [noteList[i]]
-            }
-           })
-          }
-        setLogged(!logged);
-        
-      })}
-      } catch (exception) {
-        alert('Wrong credentials')
-        setLogged(!logged);
-        setTimeout(() => {
-        }, 5000)
-      }
-  }
 
   
 
@@ -229,6 +176,7 @@ export default function CreateNote({dark, reg}) {
   }
 
   const handleSearchChange = (id) => {
+    setSearchTerm('')
     setNotes(null);
     userService.getOne(user.id).then(noteList => {
       for(let i=0; i<noteList.length; i++){
@@ -245,67 +193,29 @@ export default function CreateNote({dark, reg}) {
   })
   }
 
-  const handleLogout = () =>{
-    window.localStorage.removeItem('loggedNoteappUser')
-    navigate('/React-Projects')
-    setLogged(!logged)
-    setNotes(null);
-  }
-
   return (
     <>
-      
-      {!logged && 
-      <>
-      <div className="signup-logo">
-      <Link to='/React-Projects' className=''>
-        <img className='logo' src={logo} alt="logo" />
-      </Link> 
-    </div>
-      <form onSubmit={handleLogin} > 
-      <MDBContainer fluid className="p-3  my-2">
-  
-        <MDBRow >
-  
-          <MDBCol col='6' md='6'>
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid" alt=''/>
-          </MDBCol>
-  
-          <MDBCol col='6' md='5'>
-          <p className="text-center h2 fw-bold mx-1 mx-md-3 mt-1 mb-3">Sign In</p>
-  
-  
-            <MDBInput className='mb-0' wrapperClass='mb-0' label='Username' id='formControlLg' type='text' size="lg" value={username} onChange={({ target }) => setUsername(target.value)}/>
-            
-            <MDBInput className='mb-0' wrapperClass='mb-0' label='Password' id='formControlLg' type='password' size="lg" value={password} onChange={({ target }) => setPassword(target.value)}/>
-            <button className="mt-2 mb-2 w-100 log-btn" size="lg">Sign in</button>
-  
-            <Link to='/signup' >
-            <button className="mb-5 w-100 log-btn" size="lg" >
-              New User? Register First
-            </button>
-            </Link>
-          </MDBCol>
-  
-        </MDBRow>
-  
-      </MDBContainer>
-      </form>
-      </>
-       }
-    
-    
-    {logged &&  
-     <div className={dark?"dark":"white"}>
-      <Navbar dark={dark} handleLogout={handleLogout} logged={logged} />
-      <div className="search-box">
-        <button className={!dark?"search-btn": 'search-btn dark'} onClick={(id)=>{searchNote(id)}} ><i className="fa-solid fa-magnifying-glass"></i></button>
-        <input className={!dark?'search-bar':'search-bar-dark'} type='text' onChange={(event) => setSearchTerm(event.target.value)} />
-        <button className={!dark?"search-cross": 'search-cross-dark'} onClick={(id) => { handleSearchChange(id)}} ><i className="fa-solid fa-xmark"></i></button>
-      </div>
+    {logged ? 
+    <div className={dark?"dark":"white"}>
 
-      
+        <div className="search-box">
+            <button className={!dark?"search-btn": 'search-btn dark'} onClick={(id)=>{searchNote(id)}} ><i className="fa-solid fa-magnifying-glass"></i></button>
+            <input className={!dark?'search-bar':'search-bar-dark'} type='text' onChange={(event) => setSearchTerm(event.target.value)} />
+            <button className={!dark?"search-cross": 'search-cross-dark'} onClick={(id) => { handleSearchChange(id)}} ><i className="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div className="editor-box">
+        <MyEditor />
+        <button className='pin-btn btns' onClick={submitButton}>
+              Close
+            </button>
+        </div>
+
+        
+  
+
     <form className='create-form' style={{backgroundColor:color}} >
+      
         { isExpanded && 
         (<input  value={note.title} type='text' placeholder='Take a note' name='title' onChange={handleChange}  style={{backgroundColor:color} } />) }
         <p>
@@ -365,7 +275,11 @@ export default function CreateNote({dark, reg}) {
             date={note.date}
           />
       )) : null}
-    </div> }
+    </div>  :
+    <>
+    <Spinner />
+    </>}
+    
     </>
   )
 }

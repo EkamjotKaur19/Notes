@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Popup from './Popup'
-import EditPop from './EditPop'
-import Download from './Download'
+import Popup from './Crud/Popup'
+import EditPop from '../Components/Crud/EditPop'
+import Download from './Crud/Download'
 import noteService from '../services/notes'
 import copy from "copy-to-clipboard";  
 
@@ -73,7 +73,7 @@ export default function Note({ onDelete, id, setNote, setNotes, notes, editNote,
         {file!==" " && <img className='note-img' src={file} alt=""  onClick={handlePop} />}
         <h1 >{note.title}</h1>
         
-        <p onClick={togglePopup} value={note.content} >{file===" " && note.content!==undefined?  note.content.substring(0,140):note.content.substring(0,21)}</p>
+        <p onClick={togglePopup} value={note.content} >{file===" " && note.content!==undefined?  note.content.substring(0,140): ' '}</p>
       </div>
       <div className="note-btns">
         <button className={icons? 'note-button show' : 'note-button hide'}  onClick={() => onDelete(id, note)}>
@@ -93,9 +93,7 @@ export default function Note({ onDelete, id, setNote, setNotes, notes, editNote,
         </button>
       </div>
 
-      <div className="time">
-        <p onClick={() => dateFunc()} >Date: {dates.substring(0,10)}</p>
-      </div>
+      
     </div>
 
 

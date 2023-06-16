@@ -12,6 +12,7 @@ import {
   MDBCardImage,
   MDBInput,
   MDBIcon,
+  MDBButton,
   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
@@ -29,7 +30,7 @@ function Signup() {
             name, username, password,
           })
           console.log(useri);
-          navigate('/React-Projects')
+          navigate('/login')
           
         } catch (exception) {
           alert('error');
@@ -39,11 +40,6 @@ function Signup() {
 
   return (
     <>
-    <div className="signup-logo">
-      <Link to='/React-Projects' className=''>
-        <img className='logo' src={logo} alt="logo" />
-      </Link> 
-    </div>
     <form onSubmit={handleReg} >
       <MDBContainer fluid  >
         <MDBCardBody className='p-0 signupbox text-black m-1' style={{borderRadius: '25px'}} >

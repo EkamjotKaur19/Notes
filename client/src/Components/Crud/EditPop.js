@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './style.css'
 
 export default function EditPop({displayForm, handleEdit, setForm, note}) {
     const [inpCon, setInpCon]=useState(note.content);
