@@ -4,6 +4,9 @@ import EditPop from '../Components/Crud/EditPop'
 import Download from './Crud/Download'
 import noteService from '../services/notes'
 import copy from "copy-to-clipboard";  
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Note({ onDelete, id, setNote, setNotes, notes, editNote, note, color, file, pin, showpin, icons, date}) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +15,8 @@ export default function Note({ onDelete, id, setNote, setNotes, notes, editNote,
   const [dates, setDates] = useState(date);
     
     const copyToClipboard = () => {
-       copy(note.content);
-       alert(`You have copied "${note.content}"`);
+      toast.success(`You have copied "${note.content}"`);
+      copy(note.content);
     }
 
     const dateFunc = () => {

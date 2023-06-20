@@ -10,6 +10,7 @@ import { AuthProvider } from './Components/AuthContext';
 import Contact from './Components/Contact/Contact';
 import About from './Components/About/About';
 import Footer from './Components/Footer/Footer';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <AuthProvider >
         <div className={!dark?"App": "App-dark"}>
           <Navbar />
+          <ToastContainer />
           
         {/*<button type="button" className={dark? "btn btn-light pos mode":"btn btn-dark pos mode"} data-bs-toggle="button" onClick={() => setDark(!dark)} >{dark?'Light Mode' : 'Dark Mode'}</button>
         */}

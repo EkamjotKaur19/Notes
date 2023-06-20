@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import logo from '../images/p4.png'
 import { useNavigate, Link } from 'react-router-dom'
 import registerService from '../services/register'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   MDBBtn,
   MDBContainer,
@@ -25,15 +27,35 @@ function Signup() {
     const handleReg = async (event) => {
       event.preventDefault()
       console.log('reg in with', username, password);
+      if (password.length < 6) {
+        toast.error('Password should be at least 6 characters long');
+        return;
+      }
+      if (/\d/.test(name)) {
+        toast.error('Name should not contain numbers');
+        return;
+      }
+      if (username.length < 5) {
+        toast.error('Username should be at least 5 characters long');
+        return;
+      }
       try{
+        const existingUser = await registerService.getUserByUsername(username);
+        if (existingUser) {
+          toast.error('User with the same username already exists');
+          return;
+        }
           const useri = registerService.register({
             name, username, password,
+          
+
           })
+          toast.success(`Account Created Successfully`);
           console.log(useri);
           navigate('/login')
           
         } catch (exception) {
-          alert('error');
+          toast.error(`error`);
           console.log('error');
         }
       }
@@ -52,7 +74,7 @@ function Signup() {
                 </div>
                 <div className="d-flex flex-row align-items-center mb-2 ">
                   <MDBIcon fas icon="user me-2" size='lg'/>
-                  <MDBInput label='Your UserName' id='form1' type='text' required={true} className='w-100 mb-0' onChange={({ target }) => setUsername(target.value)}/>
+                  <MDBInput label='Your UserName' id='form12' type='text' required={true} className='w-100 mb-0' onChange={({ target }) => setUsername(target.value)}/>
                 </div>
 
                 <div className="d-flex flex-row align-items-center mb-2">

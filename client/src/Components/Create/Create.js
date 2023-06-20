@@ -5,9 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import userService from '../../services/users'
 import './style.css'
 import Spinner from '../Spinner/Spinner';
+import { AuthContext } from '../AuthContext';
 
 
 export default function CreateNote({dark, reg}) {
+  const { loggedIn, setLoggedIn,  cook, setCook } = useContext(AuthContext);
+  const [logged, setLogged] = useState(false)
   const [notes, setNotes] = useState([]);
   const [isExpanded, setExpanded] = useState(false);
   const [color, setColor] = useState('white');
@@ -17,7 +20,6 @@ export default function CreateNote({dark, reg}) {
   const [date, setDate] = useState("");
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
-  const [logged, setLogged] = useState(false);
   const [user, setUser] = useState(false)
   const [note, setNote] = useState({
     title:"",
@@ -37,6 +39,7 @@ export default function CreateNote({dark, reg}) {
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
     if (loggedUserJSON) {
+      setCook(true)
       console.log('ekam')
       const user = JSON.parse(loggedUserJSON)
       noteService.setToken(user.token)
@@ -55,7 +58,8 @@ export default function CreateNote({dark, reg}) {
           }
          })
         }
-      setLogged(!logged);
+      setLoggedIn(!loggedIn);
+      setLogged(true)
       
     })
       
@@ -168,15 +172,18 @@ export default function CreateNote({dark, reg}) {
   }
 
   const searchNote = (id) => {
+    setLoggedIn(false)
     console.log(id);
     noteService.getOne(id, note).then(response => {
       setNotes(notes.filter((note)=>note.content.toLowerCase().includes(searchTerm.toLowerCase())));
+      setLoggedIn(true)
     })
   }
 
   const handleSearchChange = (id) => {
     setSearchTerm('')
     setNotes(null);
+    setLoggedIn(false)
     userService.getOne(user.id).then(noteList => {
       for(let i=0; i<noteList.length; i++){
        setNotes((prevValue)=>{
@@ -189,6 +196,7 @@ export default function CreateNote({dark, reg}) {
        })
        console.log(notes)
       }
+      setLoggedIn(true)
   })
   }
 

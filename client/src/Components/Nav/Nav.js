@@ -14,6 +14,7 @@ const Navbar = () => {
       window.localStorage.removeItem('loggedNoteappUser')
       setLoggedIn(!loggedIn)
       setCook(!cook)
+      console.log(cook)
       navigate('/')
     }
   
@@ -39,7 +40,7 @@ const Navbar = () => {
               <li>
                 <NavLink to="/about">About</NavLink>
               </li>
-              {cook ?
+              {cook ? 
               <>
               <li>
                 <button className= 'logo-btn' onClick={handleLogout} >Logout</button>

@@ -2,7 +2,8 @@ import React, {useState, useEffect, useContext} from 'react';
 import noteService from '../../services/notes'
 import loginService from '../../services/login'
 import userService from '../../services/users'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, Link, Redirect } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -34,10 +35,9 @@ export default function Login() {
     
     
             })
-            toast('Logged in Successfully',
-           {position: toast.POSITION.TOP_RIGHT})
-            setLoggedIn(!loggedIn)
-            setCook(!cook)
+            toast.success(`Successfully logged in. Fetching Notes`);
+            setLoggedIn(true)
+            setCook(true)
             
       
             
@@ -67,7 +67,7 @@ export default function Login() {
             
           })
           } catch (exception) {
-            alert("wrong Credentials")
+            toast.error(`Wrong Credentials`);
           }
       }
   return (
@@ -101,7 +101,6 @@ export default function Login() {
   
       </MDBContainer>
       </form>
-      <ToastContainer position={toast.POSITION.TOP_CENTER} autoClose={3000} />
       
     </div>
   )

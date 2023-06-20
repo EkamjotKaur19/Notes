@@ -6,4 +6,9 @@ const register= async (request) => {
   return response.data
 }
 
-export default { register }
+const getUserByUsername = async (username) => {
+  const response = await axios.get(`${baseUrl}?username=${username}`);
+  return response.data;
+};
+
+export default { register, getUserByUsername };
