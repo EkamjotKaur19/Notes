@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import userService from '../../services/users'
 import './style.css'
 import Spinner from '../Spinner/Spinner';
-import MyEditor from '../Editor/MyEditor';
 
 
 export default function CreateNote({dark, reg}) {
@@ -203,15 +202,6 @@ export default function CreateNote({dark, reg}) {
             <input className={!dark?'search-bar':'search-bar-dark'} type='text' onChange={(event) => setSearchTerm(event.target.value)} />
             <button className={!dark?"search-cross": 'search-cross-dark'} onClick={(id) => { handleSearchChange(id)}} ><i className="fa-solid fa-xmark"></i></button>
         </div>
-
-        <div className="editor-box">
-        <MyEditor />
-        <button className='pin-btn btns' onClick={submitButton}>
-              Close
-            </button>
-        </div>
-
-        
   
 
     <form className='create-form' style={{backgroundColor:color}} >

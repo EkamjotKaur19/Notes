@@ -7,6 +7,7 @@
   overflow-x: hidden;
   flex-wrap: wrap; 
   transition: all 0.2 linear;
+  margin-top: 2%;
 }
 .grand_parent{ width: 100vw; 
   height:100vh;

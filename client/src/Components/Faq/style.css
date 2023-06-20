@@ -1,0 +1,33 @@
+.faq-cont{
+    padding:3%;
+    margin-bottom:5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.3)
+      ),url('../../assets/FAQs-cuate.png');
+      background-size: cover;
+      background-position: center;
+}
+
+.col-cont{
+    width:100%
+}
+
+.row-faq {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    background-color:#279aff;
+    margin-top: 4%;
+  }
+  .row-faq .feat-h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3.75em;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0;
+  }

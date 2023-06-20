@@ -5,6 +5,7 @@
     margin-top: 0;
     height: 100vh;
     top: 0%;
+    z-index:1;
     left: 0;
   }
   
@@ -88,7 +89,9 @@
     border: none;
     outline: none;
     background-color: #144aee;
+    padding:2%;
     font-size: 18px;
+    color:white;
   }
   
   .pop-down{
@@ -178,6 +181,8 @@
     position: fixed;
     right: 35%;
     background-color:#144aee;
+    color:white;
+    padding:2%;
     top: 65%;
     border: none;
     outline: none;

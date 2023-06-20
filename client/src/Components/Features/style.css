@@ -5,11 +5,13 @@
     justify-content: center;
     align-items: center;
     
+    
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 3%;
     margin-bottom: 0;
   }
   .row .feat-h1 {
@@ -22,7 +24,7 @@
   }
 
 .feat-wrapper{
-    background: linear-gradient(#279aff 70%, #fff 50%, #fff 100%);
+    background: linear-gradient(#279aff 60%, #fff 50%, #fff 100%);
 }
 
 .contain{

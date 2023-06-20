@@ -275,7 +275,8 @@
 .editor-box{
   margin:5%;
   padding:3%;
-  border:3px solid rgb(90, 63, 197)
+  border:3px solid rgb(90, 63, 197);
+  z-index:1;
 }
 
 .wrapper-class {

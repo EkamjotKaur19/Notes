@@ -3,7 +3,7 @@ import noteService from '../../services/notes'
 import loginService from '../../services/login'
 import userService from '../../services/users'
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Redirect } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   MDBContainer,
@@ -34,6 +34,8 @@ export default function Login() {
     
     
             })
+            toast('Logged in Successfully',
+           {position: toast.POSITION.TOP_RIGHT})
             setLoggedIn(!loggedIn)
             setCook(!cook)
             
@@ -49,8 +51,7 @@ export default function Login() {
             setUsername('')
             setPassword('');
             console.log(user.id)
-            toast('Hello Geeks 4',
-           {position: toast.POSITION.BOTTOM_LEFT})
+            
             navigate('/create')
             userService.getOne(user.id).then(noteList => {
               for(let i=0; i<noteList.length; i++){
@@ -86,7 +87,7 @@ export default function Login() {
   
             <MDBInput className='mb-0' wrapperClass='mb-0' label='Username' id='formControlLg' type='text' size="lg" value={username} onChange={({ target }) => setUsername(target.value)}/>
             
-            <MDBInput className='mb-0' wrapperClass='mb-0' label='Password' id='formControlLg' type='password' size="lg" value={password} onChange={({ target }) => setPassword(target.value)}/>
+            <MDBInput className='mb-0' wrapperClass='mb-0' label='Password' id='formControlLgg' type='password' size="lg" value={password} onChange={({ target }) => setPassword(target.value)}/>
             <button className="mt-2 mb-2 w-100 log-btn" size="lg">Sign in</button>
   
             <Link to='/signup' >
