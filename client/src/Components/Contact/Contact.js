@@ -1,7 +1,5 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import styled from "styled-components";
-import p1 from '../../assets/p1.webp'
 import './style.css'
 import Footer from "../Footer/Footer";
 
