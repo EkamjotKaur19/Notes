@@ -40,11 +40,6 @@ function Signup() {
         return;
       }
       try{
-        const existingUser = await registerService.getUserByUsername(username);
-        if (existingUser) {
-          toast.error('User with the same username already exists');
-          return;
-        }
           const useri = registerService.register({
             name, username, password,
           
